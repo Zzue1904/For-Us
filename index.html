@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para nosotros ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --vino: #b87287;
+      --rosa: #80052a;
+      --crema: #fdf6ee;
+      --texto: #3d2630;
+      --tarjeta: #fffdf9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--crema);
+      color: var(--texto);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Corazones animados */
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      color: var(--rosa);
+      opacity: 0.25;
+      font-size: var(--size);
+      animation: subir var(--time) linear infinite;
+      animation-delay: var(--delay);
+    }
+
+    @keyframes subir {
+      to {
+        transform: translateY(-112vh) rotate(30deg);
+        opacity: 0;
+      }
+    }
+
+    /* Pantalla inicial */
+    .inicio {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .inicio::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      top: 12%;
+      left: -95px;
+      border-radius: 50%;
+      background: #f5ced7;
+      filter: blur(6px);
+      z-index: -1;
+    }
+
+    .inicio::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      bottom: 5%;
+      right: -55px;
+      border-radius: 50%;
+      background: #f8dfb8;
+      z-index: -1;
+    }
+
+    .hero {
+      max-width: 730px;
+      text-align: center;
+      animation: aparecer 0.9s ease both;
+    }
+
+    .eyebrow {
+      margin: 0 0 26px;
+      color: var(--vino);
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.23em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.3rem, 11vw, 6.9rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+    }
+
+    h1 em {
+      color: var(--vino);
+      font-weight: 500;
+    }
+
+    .hero p:not(.eyebrow) {
+      max-width: 450px;
+      margin: 28px auto 34px;
+      color: #684b56;
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .boton {
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 25px;
+      background: var(--vino);
+      color: white;
+      cursor: pointer;
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 11px 27px #702f4340;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .boton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px #702f4355;
+    }
+
+    .corazon-grande {
+      display: block;
+      margin-top: 35px;
+      color: var(--rosa);
+      font-size: 20px;
+      animation: latir 1.8s ease-in-out infinite;
+    }
+
+    @keyframes latir {
+      50% {
+        transform: scale(1.35);
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+    }
+
+    /* Sección de enlaces */
+    .recuerdos {
+      display: none;
+      min-height: 100vh;
+      padding: 86px 22px 60px;
+    }
+
+    .recuerdos.mostrar {
+      display: block;
+      animation: aparecer 0.65s ease both;
+    }
+
+    .contenedor {
+      width: min(1090px, 100%);
+      margin: auto;
+    }
+
+    .barra-superior {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 48px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e9d7d5;
+    }
+
+    .marca {
+      margin: 0;
+      color: var(--vino);
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .volver {
+      border: 0;
+      background: transparent;
+      color: #795865;
+      cursor: pointer;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .titulo-seccion {
+      max-width: 620px;
+      margin-bottom: 38px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.6rem, 7vw, 4.9rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .titulo-seccion p {
+      margin-top: 16px;
+      color: #795865;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .tarjeta {
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--tarjeta);
+      box-shadow: 0 15px 45px #7e4d5614;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-7px) rotate(-0.5deg);
+      box-shadow: 0 19px 42px #7e4d5624;
+    }
+
+    .foto {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 0.82;
+      object-fit: cover;
+      filter: saturate(0.78) sepia(0.08);
+    }
+
+    .contenido-tarjeta {
+      padding: 22px 21px 23px;
+    }
+
+    .numero {
+      color: #b26379;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 9px 0 8px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.75rem;
+    }
+
+    .tarjeta p {
+      margin: 0 0 19px;
+      color: #862342;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .link {
+      color: var(--vino);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .link span {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .link:hover span {
+      transform: translateX(4px);
+    }
+
+    .final {
+      margin-top: 55px;
+      color: #881a1a;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+
+      .recuerdos {
+        padding-top: 42px;
+      }
+
+      .barra-superior {
+        margin-bottom: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" aria-hidden="true">
+    <span class="heart" style="left:7%; --time:11s; --delay:-3s; --size:20px">♥</span>
+    <span class="heart" style="left:19%; --time:14s; --delay:-10s; --size:13px">♥</span>
+    <span class="heart" style="left:41%; --time:13s; --delay:-6s; --size:17px">♥</span>
+    <span class="heart" style="left:65%; --time:16s; --delay:-12s; --size:13px">♥</span>
+    <span class="heart" style="left:82%; --time:12s; --delay:-8s; --size:22px">♥</span>
+  </div>
+
+  <main>
+    <section class="inicio" id="inicio">
+      <div class="hero">
+        <p class="eyebrow">Un pequeño rincón para ti</p>
+
+        <h1>
+          Todo lo que<br>
+          <em>he creado</em> contigo<br>
+          en mente.
+        </h1>
+
+        <p>
+          Tres pequeños universos, una misma historia: la nuestra.
+          Guarda este lugar para volver a ellos cuando quieras.
+        </p>
+
+        <button class="boton" id="abrir">
+          Abrir nuestros recuerdos ♡
+        </button>
+
+        <span class="corazon-grande">♥</span>
+      </div>
+    </section>
+
+    <section class="recuerdos" id="recuerdos">
+      <div class="contenedor">
+        <div class="barra-superior">
+          <p class="marca">Para nosotros ♡</p>
+          <button class="volver" id="volver">← Volver al inicio</button>
+        </div>
+
+        <div class="titulo-seccion">
+          <h2>Pequeñas cosas<br>que llevan tu nombre.</h2>
+          <p>
+            Cada enlace es una puerta a un momento que hice pensando en ti.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="tarjeta">
+            <img class="foto" src="images/flores.jpg" alt="Flores">
+            <div class="contenido-tarjeta">
+              <span class="numero">01 · Las flores amarillas</span>
+              <h3>Flowers for you</h3>
+              <p>Un pequeño recuerdo de este día.</p>
+
+              <!-- CAMBIA ESTE LINK -->
+              <a class="link" href="https://zzue1904.github.io/Flowers-for-You---Interactive-Love-Tree/" target="_blank">
+                Entrar al recuerdo <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <img class="foto" src="images/corazon.jpg" alt="Corazón">
+            <div class="contenido-tarjeta">
+              <span class="numero">02 · para cuando necesites amor</span>
+              <h3>Mi corazón</h3>
+              <p>El codigo que hice pensando en ti.</p>
+
+              <!-- CAMBIA ESTE LINK -->
+              <a class="link" href="https://zzue1904.github.io/heart/" target="_blank">
+                Entrar al enlace <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <img class="foto" src="images/cumpleaños.jpg" alt="Cumpleaños">
+            <div class="contenido-tarjeta">
+              <span class="numero">03 · Con todo mi cariño</span>
+              <h3>La sorpresa de tu cumpleaños</h3>
+              <p>Porque nunca sobran las razones para mostrarte cuánto te quiero.</p>
+
+              <!-- CAMBIA ESTE LINK -->
+              <a class="link" href="https://griffinbirthdayquest.my.canva.site/" target="_blank">
+                Ver la sorpresa <span>→</span>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <p class="final">
+          Y todavía nos quedan muchas páginas por escribir. ♡
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const inicio = document.querySelector("#inicio");
+    const recuerdos = document.querySelector("#recuerdos");
+
+    document.querySelector("#abrir").addEventListener("click", () => {
+      inicio.style.display = "none";
+      recuerdos.classList.add("mostrar");
+      window.scrollTo(0, 0);
+    });
+
+    document.querySelector("#volver").addEventListener("click", () => {
+      recuerdos.classList.remove("mostrar");
+      inicio.style.display = "";
+      window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
